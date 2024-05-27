@@ -70,8 +70,16 @@ IoT 개발자 미니프로젝트 리포지토리
 
 ## 4일차
 - 라즈베리파이 IoT장비 설치
-    [ ] 라즈베리파이 카메라
-    [ ] GPIO HAT
+    - [x] 라즈베리파이 카메라
+    - [x] GPIO HAT
+    - [x] 브레드보드와 연결
+    - [ ] DHT11 센서
+    - [x] RGB LED 모듈
+        - V - 5V 연결
+        - R - GPIO4 연결
+        - B - GPIO5 연결
+        - G - GPIO6 연결
+    - [ ] 서보모터
 
 ## 5일차
 - 미니 프로젝트
@@ -97,5 +105,16 @@ IoT 개발자 미니프로젝트 리포지토리
     - [x]Mosquitto Broker 설치
         - mosquitto.conf : listener 1883 0.0.0.0, allow_anoymous true
         - 방화벽 인바운드 열기
-    - []RPi : paho-mqtt 패키지 설치, 송신(publisher)
-    - Win : MQTT.NET Nuget패키지 설치, 수신(subcriber)
+    - [x]RPi : paho-mqtt 패키지 설치, 송신(publisher)
+    - Win/C# : M2MQTT, MQTT.NET Nuget패키지 설치, 수신(subcriber)
+        - M2MQTT : 가볍게 쓸 수 있음. 업데이트가 안됨
+        - MQTTNet : MS에서 개발, 무겁다. 최신까지 업데이트 잘됨
+
+## 9일차
+- 스마트홈 연동 클래스 미니프로젝트
+    - [ ] WPF MQTT데이터 DB로 저장
+    - [ ] MQTT데이터 실시간모니터링
+    - [ ] MQTT RPi 제어(LED 제어)
+    - [ ] WPF MQTT 데이터 히스토리 확인
+
+- 조별 미니프로젝트 발표

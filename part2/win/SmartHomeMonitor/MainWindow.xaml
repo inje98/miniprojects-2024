@@ -8,7 +8,7 @@
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:local="clr-namespace:SmartHomeMonitoringApp"
     mc:Ignorable="d"
-    Title="SmartHome Monitoring System" Height="450" Width="800" 
+    Title="SmartHome Monitoring System" Height="670" Width="1060" 
     MinHeight="450" MinWidth="670"
     Loaded="MetroWindow_Loaded" Closing="MetroWindow_Closing">
     <mah:MetroWindow.IconTemplate>
@@ -53,15 +53,21 @@
                     <MenuItem.Icon>
                         <iconPacks:PackIconJamIcons Kind="ScreenF" />
                     </MenuItem.Icon>
+                    
                     <MenuItem x:Name="MnuDataBaseMon" Header="DB모니터링" Click="MnuDataBaseMon_Click_1">
                         <MenuItem.Icon>
                             <iconPacks:PackIconMaterial Kind="Database" />
                         </MenuItem.Icon>
                     </MenuItem>
-
-                    <MenuItem x:Name="MnuRealTimeMon" Header="실시간모니터링" Click="MnuRealTimeMon_Click_1">
+                    <MenuItem x:Name="MnuRealTimeMon" Header="실시간모니터링" Click="MnuRealTimeMon_Click">
                         <MenuItem.Icon>
                             <iconPacks:PackIconMaterial Kind="GaugeFull" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="MnuVisualizationMon" Header="시각화모니터링"
+                              Click="MnuVisualizationMon_Click_1">
+                        <MenuItem.Icon>
+                            <iconPacks:PackIconMaterial Kind="ChartMultiline" />
                         </MenuItem.Icon>
                     </MenuItem>
                     
