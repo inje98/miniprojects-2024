@@ -20,6 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace SmartHomeMonitoringApp.Views
 {
@@ -31,18 +32,26 @@ namespace SmartHomeMonitoringApp.Views
         public RealTimeControl()
         {
             InitializeComponent();
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 1); // 1초마다
+            timer.Tick += Timer_Tick;
+            timer.Start();
         }
 
-        
-        
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            LblSensingDt.Content = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        }
+
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             if (Commons.MQTT_CLIENT != null && Commons.MQTT_CLIENT.IsConnected)
-            {   // 이미 다른 화면에서 MQTT를 연결한 경우
+            { // 이미 다른화면에서 MQTT를 연결했다면...
                 Commons.MQTT_CLIENT.ApplicationMessageReceivedAsync += MQTT_CLIENT_ApplicationMessageReceivedAsync;
             }
             else
-            {
+            {   // 한번도 연결한 적이 없으면.
                 var mqttFactory = new MqttFactory();
                 Commons.MQTT_CLIENT = mqttFactory.CreateMqttClient();
                 var mqttClientOptions = new MqttClientOptionsBuilder().WithTcpServer(Commons.BROKERHOST).Build();
@@ -58,18 +67,18 @@ namespace SmartHomeMonitoringApp.Views
             }
         }
 
-        private Task MQTT_CLIENT_ApplicationMessageReceivedAsync(MqttApplicationMessageReceivedEventArgs arg)
+        private Task MQTT_CLIENT_ApplicationMessageReceivedAsync(MQTTnet.Client.MqttApplicationMessageReceivedEventArgs arg)
         {
             var payload = Encoding.UTF8.GetString(arg.ApplicationMessage.Payload);
             Debug.WriteLine(payload);
+            UpdateChart(payload);
 
             return Task.CompletedTask;
         }
 
-
-    
-        private void InsertData(string payload)
+        private void UpdateChart(string payload)
         {
+            // 차트에 값 대입해서 차트가 나오도록
             this.Invoke(() =>
             {
                 var currValue = JsonConvert.DeserializeObject<Dictionary<string, string>>(payload);
@@ -79,22 +88,15 @@ namespace SmartHomeMonitoringApp.Views
                 var humid = Convert.ToDouble(splitValue[1]);
 
                 var tempVal = GaugeGenerator.BuildSolidGauge(new GaugeItem(
-                    temp,
-                    series =>
-                    {
-                        series.MaxRadialColumnWidth = 50;
-                        series.DataLabelsSize = 50;
-                    }
+                        temp,
+                        series =>
+                        {
+                            series.MaxRadialColumnWidth = 50;
+                            series.DataLabelsSize = 50;
+                        }
                     ));
                 ChtDinningTemp.Series = tempVal;
             });
         }
-
-        //LblSensingDt.Content = DateTime.Now.ToString("yyyy-MM-dd-
     }
-
-    //var payload = Encoding.UTF8.GetString(arg.ApplicationMessage.Payload);
-    //// Debug.WriteLine(payload);
-    //UpdateLog(payload); // TextBox에 추가
-    //InsertData(payload); // DB에 저장
 }
