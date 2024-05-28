@@ -117,4 +117,20 @@ IoT 개발자 미니프로젝트 리포지토리
     - [ ] MQTT RPi 제어(LED 제어)
     - [ ] WPF MQTT 데이터 히스토리 확인
 
+
+## 10일차
+- 스마트홈 연동 클래스 미니프로젝트 마무리
+    - [ ] WPF MQTT데이터 DB로 저장
+    - [ ] MQTT데이터 실시간모니터링
+    - [ ] MQTT RPi 제어(LED 제어)
+    - [ ] WPF MQTT 데이터 히스토리 확인
+        - LiveChart2는 차후에 다시
+    - 실행결과
+    ![IoT프로젝트](https://raw.githubusercontent.com/inje98/miniprojects-2024/main/images/mp001.png)
+    
+    ![IoT프로젝트](https://raw.githubusercontent.com/inje98/miniprojects-2024/main/images/mp002.png)
+    
+    ![IoT프로젝트](https://raw.githubusercontent.com/inje98/miniprojects-2024/main/images/mp003.png)
+        
+
 - 조별 미니프로젝트 발표

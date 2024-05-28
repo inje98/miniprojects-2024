@@ -65,7 +65,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem x:Name="MnuVisualizationMon" Header="시각화모니터링"
-                              Click="MnuVisualizationMon_Click_1">
+                              Click="MnuVisualizationMon_Click">
                         <MenuItem.Icon>
                             <iconPacks:PackIconMaterial Kind="ChartMultiline" />
                         </MenuItem.Icon>
